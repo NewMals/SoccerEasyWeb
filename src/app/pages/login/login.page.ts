@@ -12,8 +12,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  signWithEmail(){
+  SignWithEmail(){
     console.log("validar email  ");
   }
 
+  Register(){
+    
+  }
 }

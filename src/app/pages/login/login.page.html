@@ -1,26 +1,26 @@
 <ion-content padding>
-  <ion-card class="general" color="dark">
+  <ion-card class="general">
     <ion-card-content>
       <ion-card-header>
-        <ion-card-title class="titulo">SoccerEasy</ion-card-title>
+        <ion-card-title>SoccerEasy</ion-card-title>
       </ion-card-header>
-      <ion-item color="dark">
-        <ion-icon name="mail" slot="start" color="medium"></ion-icon>
+      <ion-item>
+        <ion-icon name="mail" slot="start" color="primary"></ion-icon>
         <ion-label position="stacked" color="primary">Email</ion-label>
         <ion-input placeholder="usuario@soccer.com" type="email"></ion-input>
       </ion-item>
       <br>
-      <ion-item color="dark">
-        <ion-icon name="lock" slot="start" color="medium"></ion-icon>
+      <ion-item>
+        <ion-icon name="lock" slot="start" color="primary"></ion-icon>
         <ion-label position="stacked" color="primary">Contraseña</ion-label>
         <ion-input type="password"></ion-input>
       </ion-item>
       <br>
-      <div style="text-align: center">
-        <ion-button color="medium" (click)="signWithEmail()" shape="round">
-          Acceder
-        </ion-button>
-      </div>
+      <ion-button color="primary" (click)="SignWithEmail()" shape="round">
+        Iniciar sesión
+      </ion-button>
+      <br>
+      <ion-label color="secondary" class="Register" (click)="Register()">Crear cuenta</ion-label>
     </ion-card-content>
   </ion-card>
 </ion-content>
