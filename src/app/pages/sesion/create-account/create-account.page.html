@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>CreateAccount</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="general">
+    <ion-card-header>
+      <ion-card-title>Registra tu cuenta Soccer</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <ion-label>Por favor diligenciar los campos obligatorios (*)</ion-label> -->
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary" required>Nombres</ion-label>
+            <ion-input [(ngModel)]="usuario.USUNombres" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary" required>Apellidos</ion-label>
+            <ion-input [(ngModel)]="usuario.USUApellidos" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary">Num. identificación *</ion-label>
+            <ion-input [(ngModel)]="usuario.USUidentificacion" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary">Ciudad</ion-label>
+            <ion-input [(ngModel)]="usuario.USUciudad" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary" required="true">Correo electronico *</ion-label>
+            <ion-input [(ngModel)]="usuario.USUemail" type="email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary" required="true">Contraseña *</ion-label>
+            <ion-input [(ngModel)]="password" type="password" (keyup)="confirmPass($event)"></ion-input>
+          </ion-item>
+          <ion-label class="mjsError" *ngIf="sizePass"> * Utiliza una contraseña mayor a 8 caracteres</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" color="primary" required="true">Confirmar contraseña</ion-label>
+            <ion-input [disabled]="!password" [(ngModel)]="confirmPassword" type="password" (keyup)="confirmPass($event)"></ion-input>
+          </ion-item>
+          <ion-label class="mjsError" *ngIf="confirmPassword && password != confirmPassword"> * La contraseña no es
+            igual</ion-label>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-label color="danger">{{mensajeError}}</ion-label>
+      <br>
+      <ion-button color="primary" [disabled]="!Habilitar" (click)="createAccount()" shape="round">
+        Registrarme
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

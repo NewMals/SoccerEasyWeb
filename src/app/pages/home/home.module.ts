@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { AuthenticationService } from 'src/app/providers/authentication/authentication.service';
+import { AuthGuard } from 'src/app/providers/authentication/auth.guard';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [AuthGuard]
 })
 export class HomePageModule {}
