@@ -1,16 +1,17 @@
 import { Usuario } from './../../models/usuario';
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from '@angular/fire';
-import { throwError } from 'rxjs';
+import { throwError, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  isLoggedIn: boolean = false;
+  isLoggedIn = new Subject<boolean>();
 
-  constructor(private firebase: FirebaseApp) { }
+  constructor(private firebase: FirebaseApp, private router: Router) { }
 
   async createUserEmail(user: Usuario, password: string) {
     let respuesta = "";
@@ -40,7 +41,7 @@ export class AuthenticationService {
     let respuesta = "";
     try {
       await this.firebase.auth().signInWithEmailAndPassword(email, password);
-      this.isLoggedIn = true;
+      this.isLoggedIn.next(true);
     }
     catch (error) {
       switch (error.code) {
@@ -65,20 +66,20 @@ export class AuthenticationService {
           break;
         }
       }
-      this.isLoggedIn = false;
+      this.isLoggedIn.next(false);
       throw respuesta;
     }
   }
 
-  async StateSesion() {
-    await this.firebase.auth().onAuthStateChanged(user => {
+  StateSesion() {
+    this.firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.isLoggedIn = true;
+        this.isLoggedIn.next(true);
       }
       else {
-        this.isLoggedIn = false;
+        this.router.navigate(['login']);
+        this.isLoggedIn.next(false);
       }
     });
-    return this.isLoggedIn;
   }
 }
