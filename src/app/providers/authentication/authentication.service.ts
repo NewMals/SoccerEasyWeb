@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  isLoggedIn = new Subject<boolean>();
-
-  constructor(private firebase: FirebaseApp, private router: Router) { }
+  constructor(private firebase: FirebaseApp, private router: Router) { 
+    this.StateSesion();
+  }
 
   async createUserEmail(user: Usuario, password: string) {
     let respuesta = "";
@@ -41,7 +41,6 @@ export class AuthenticationService {
     let respuesta = "";
     try {
       await this.firebase.auth().signInWithEmailAndPassword(email, password);
-      this.isLoggedIn.next(true);
     }
     catch (error) {
       switch (error.code) {
@@ -66,20 +65,38 @@ export class AuthenticationService {
           break;
         }
       }
-      this.isLoggedIn.next(false);
       throw respuesta;
     }
   }
 
   StateSesion() {
-    this.firebase.auth().onAuthStateChanged(user => {
+    return this.firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.isLoggedIn.next(true);
+        return true;
       }
       else {
         this.router.navigate(['login']);
-        this.isLoggedIn.next(false);
+        return false;
       }
+    });
+  }
+
+  openDB(): Promise<IDBOpenDBRequest> {
+    return new Promise((resolve) => {
+      let request = indexedDB.open("firebaseLocalStorageDb");
+      request.onsuccess = (event: any) => {
+        let data : IDBOpenDBRequest = event.target;
+        resolve(data);
+      }
+    });
+  }
+
+  DBRequestCount(registros: IDBRequest<number>): Promise<IDBRequest<number>>{
+    return new Promise((resolve) =>{
+        registros.onsuccess = (event: any) =>{
+          let data : IDBRequest<number> = event.target;
+          resolve(data);
+        }
     });
   }
 }

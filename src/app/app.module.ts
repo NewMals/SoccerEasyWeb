@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationService } from './providers/authentication/authentication.service';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MenuComponent } from './components/menu/menu.component'
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAUbPHkAQHVaXWahwL_M0zRybUtmKZG-IA",
@@ -31,7 +32,6 @@ export const firebaseConfig = {
     , IonicModule.forRoot()
     , AppRoutingModule
     , AngularFireModule.initializeApp(firebaseConfig)
-    , HomePageModule
     , AngularFireAuthModule
   ],    
   providers: [

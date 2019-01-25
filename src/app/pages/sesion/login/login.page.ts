@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
   async SignInWithEmail(){
     try {
       await this.auth.signInWithEmail(this.email, this.password);
-      this.router.navigate(["home"])
+      this.router.navigate(["home"]);
     } catch (error) {
       this.mensajeError = error;
     } 

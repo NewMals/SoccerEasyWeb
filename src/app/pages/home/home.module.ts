@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
+import { ComponentsModule } from './../../components/components.module';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
-import { AuthenticationService } from 'src/app/providers/authentication/authentication.service';
-import { AuthGuard } from 'src/app/providers/authentication/auth.guard';
+import { HomeGuard } from 'src/app/guard/home/home.guard';
 
 @NgModule({
   imports: [
+    ComponentsModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -21,6 +22,6 @@ import { AuthGuard } from 'src/app/providers/authentication/auth.guard';
     ])
   ],
   declarations: [HomePage],
-  providers: [AuthGuard]
+  providers: [HomeGuard]
 })
 export class HomePageModule {}
