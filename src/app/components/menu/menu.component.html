@@ -6,7 +6,6 @@
   </ion-buttons>
   <ion-title>Left side menu toggle</ion-title>
 </ion-toolbar>
-
 <ion-menu side="start" menuId="first" class="GlobalMenu">
   <ion-header>
     <ion-toolbar color="primary">
@@ -15,13 +14,13 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item (click)="presentPopover()"> 
-        <ion-icon slot="start" name="cog"></ion-icon>
+      <ion-item>
+        <ion-icon (mouseover)="ViewTittle()" (mouseout)="OutTittle()" name="cog"></ion-icon>
       </ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
+<div>
+  <ion-label id="titulo" color="primary">Ejemplo valor</ion-label>
+</div>
 <ion-router-outlet main></ion-router-outlet>

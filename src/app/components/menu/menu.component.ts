@@ -1,6 +1,7 @@
 import { HomePage } from './../../pages/home/home.page';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MenuController, PopoverController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +14,7 @@ export class MenuComponent {
 
   openFirst() { 
     this.menu.enable(true, 'first');
-    this.menu.toggle('first');
+    this.menu.open('first');
   }
 
   async presentPopover(ev: any) {
@@ -23,5 +24,13 @@ export class MenuComponent {
       translucent: true
     });
     return await popover.present();
+  }
+
+  ViewTittle(){
+    document.getElementById("titulo").style.visibility = "visible";
+  }
+
+  OutTittle(){
+    document.getElementById("titulo").style.visibility = "hidden";
   }
 }
